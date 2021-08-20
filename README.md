@@ -276,3 +276,60 @@ func main() {
 1. f1中的循环使用了一个关键字 range，是Go语言提供的，类似与foreach的循环方式,可以对数组,字符串(字符串底层是[]byte),slice(切片),map进行遍历
 2. f2中的循环我们可以看到，他就是while麻，只不过使用了for关键字而已。这下我们知道了go语言中对简单开发的理解是多么的深刻
 3. f3中也是我们常见的循环结构，值，循环次数和离开条件，循环规则。
+## 函数(func)
+> func 函数名(...参数) 返回值{}
+> 
+> go语言支持多返回值 即有语法为 func 函数名(...参数) 返回值1,返回值2{}
+> 
+> go语言是函数式编程，与其他语言不同的地方在于 func函数也可以作为参数传入一个新的函数作为使用
+
+上述代码中已经存在许多函数了，这里我们就特别针对第三点来做一个代码的描述
+```go
+package main
+
+import (
+	"fmt"
+	"reflect"
+	"runtime"
+)
+
+const (
+	add = "+"
+	sub = "-"
+	mul = "*"
+	div = "/"
+)
+
+func operation(op string, a, b int) (int, error) {
+	res := 0
+	var err error
+	switch op {
+	case add:
+		res, err = a+b, nil
+	case sub:
+		res, err = a-b, nil
+	case mul:
+		res, err = a*b, nil
+	case div:
+		res, err = a/b, nil
+	default:
+		fmt.Errorf("当前操作错误 导致错误的操作为 %s", operation)
+	}
+	return res, err
+}
+
+func call(operation func(op string, a, b int) (int, error), op string, a, b int) (int, error) {
+	funcPtr := reflect.ValueOf(operation).Pointer()
+	funcName := runtime.FuncForPC(funcPtr).Name()
+	fmt.Printf("当前执行的函数名为 %s\n", funcName)
+	return operation(op, a, b)
+}
+
+func main() {
+	res, err := call(operation, add, 3, 4)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(res)
+}
+```
