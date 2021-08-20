@@ -26,7 +26,7 @@ func variableZeroValue() {
 	// 分别创建变量age，name 变量类型分别为 int 、string型
 	var age int
 	var name string
-	fmt.Println(age, name)
+	fmt.Printf("%d %s\n", age, name)
 }
 
 /**
@@ -57,6 +57,9 @@ func variableShorter() {
 }
 
 func main() {
+	var char rune
+	char = 'A'
+	fmt.Println(char)
 	variableZeroValue()
 	variableInitiaValue()
 	variableTypeDeduction()

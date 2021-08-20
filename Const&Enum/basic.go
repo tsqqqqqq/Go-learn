@@ -36,7 +36,7 @@ const (
 
 func main() {
 	consts()
-
+	const age = 18
 	fmt.Println(cpp, java, python)
 	fmt.Println(b, kb, mb, gb, tb, pb)
 }
