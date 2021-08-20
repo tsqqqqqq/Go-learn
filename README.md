@@ -197,4 +197,4 @@ func main() {
    fmt.Println(res)
 }
 ```
-Go语言中的switch条件判断可以在switch关键字后使用也可以在case中进行判断。在Go语言中 case无需使用break来退出，除非使用fallthough。
+Go语言中的switch条件判断可以在switch关键字后使用也可以在case中进行判断。在Go语言中 case无需使用break来退出，除非使用fallthrough。
