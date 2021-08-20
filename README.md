@@ -6,7 +6,9 @@
 1. 登录go官方网站 [GoLang](https://golang.google.cn/) 根据操作系统安装下载对应的安装包
 2. 安装golang 
 3. 打开命令行 输入 go verison 出现如下内容代表安装成功
+   
    ![img.png](img.png)
+   
 4. 配置国内代理GOPROXY： go env -w GOPROXY=http://goproxy.cn 
 5. 配置GO111MODEL： go env -w GO111MODEL=on
 
