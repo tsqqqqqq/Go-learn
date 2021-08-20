@@ -222,7 +222,6 @@ func main() {
 }
 ```
 特殊的是 go语言中的if语句条件判断时可以赋值，而那个在if语句条件判断时赋值的变量，作用域仅在该if代码块中。其他代码块无法引用该变量。
-
 ```go
 package main
 
@@ -236,3 +235,44 @@ func main() {
    }
 }
 ```
+## 循环(for)
+在go语言中，没有while循环，因为go语言的设计是为了简便，而for关键字的操作完全可以把while、do-while替换掉
+让我们分别来看看三种for循环的范例：
+
+```go
+package main
+
+import (
+   "fmt"
+   "strconv"
+)
+
+func f1(str string) {
+   for v:=range str{
+   	    fmt.Println(v)
+   }
+}
+func f2(N int) {
+   for N > 0 {
+      fmt.Println(2 * N)
+      N -= 1
+   }
+}
+func f3(N int) string {
+   res := ""
+   for ; N > 0; N /= 2 {
+      N %= 2
+      res = strconv.Itoa(N) + res
+   }
+   return res
+}
+func main() {
+   f1("tsqqqqqq")
+   f2(10)
+   fmt.Println(f3(256))
+}
+```
+以上是常见的三种for循环的使用方式：
+1. f1中的循环使用了一个关键字 range，是Go语言提供的，类似与foreach的循环方式,可以对数组,字符串(字符串底层是[]byte),slice(切片),map进行遍历
+2. f2中的循环我们可以看到，他就是while麻，只不过使用了for关键字而已。这下我们知道了go语言中对简单开发的理解是多么的深刻
+3. f3中也是我们常见的循环结构，值，循环次数和离开条件，循环规则。
