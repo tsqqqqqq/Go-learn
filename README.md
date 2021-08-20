@@ -198,3 +198,41 @@ func main() {
 }
 ```
 Go语言中的switch条件判断可以在switch关键字后使用也可以在case中进行判断。在Go语言中 case无需使用break来退出，除非使用fallthrough。
+
+> if check {} 
+
+if 的语法也非常简单，它无需判断条件外部添加括号，毕竟go语言一切以简单为主。
+上代码！
+
+```go
+package main
+
+import (
+   "fmt"
+   "io/ioutil"
+)
+
+func main() {
+   const filename = "abc.txt"
+   contexts, err := ioutil.ReadFile(filename)
+   if err != nil {
+      panic(err)
+   }
+   fmt.Printf("%s\n", contexts)
+}
+```
+特殊的是 go语言中的if语句条件判断时可以赋值，而那个在if语句条件判断时赋值的变量，作用域仅在该if代码块中。其他代码块无法引用该变量。
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+   if i := 17; i >= 18 {
+      fmt.Println("成年人")
+   }else{
+   	  fmt.Println("未成年,年龄为：",i)
+   }
+}
+```
