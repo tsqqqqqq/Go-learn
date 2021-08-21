@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 /**
 map 的key使用hash表 ，
@@ -38,5 +40,24 @@ func main() {
 
 	//delete values
 	delete(m1, "sex")
+	findStr("abcabcbb")
+}
 
+func findStr(str string) {
+	maps := make(map[rune]int)
+	start := 0
+	max := 0
+	for index, value := range str {
+		if ch, ok := maps[value]; ok && ch >= start {
+			start = ch + 1
+		}
+		if index-start+1 > max {
+			max = index - start + 1
+		}
+		maps[value] = index
+	}
+	fmt.Println(max)
+	fmt.Println(maps)
+	strs := str[start:max]
+	fmt.Println(strs)
 }
